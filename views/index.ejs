@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    
+</head>
+<body>
+    <style>
+        .col{
+            text-align: center;
+        }
+        h1{
+            text-align: center;
+        }
+        .news-ticker{
+            text-align: center;
+        }
+        footer{
+            text-align: right;
+            font-family: cursive;
+        }
+        h6{
+            text-align: center;
+            font-weight: lighter;
+            font-family: cursive;
+        }
+        
+    </style>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+    <div class="pricing-header p-3 pb-md-4 mx-auto text-center">
+        <h2>Enter a Place</h2>
+        <form action="/" method="POST">
+            <input type="text" name="placeName" placeholder="Place Name" required>
+            <input type="submit" value="Submit">
+        </form>
+      </div>
+           <% if (locals.error) { %>
+            <h1>Wrong City</h1>
+           <% } %>
+           <% if (locals.name) { %>
+            
+           
+    <div class="row row-cols-1 row-cols-md-3 mb-3 text-center">
+        </div>
+        </div>
+        <div class="col">
+          <div class="card mb-4 rounded-3 shadow-sm">
+            <div class="card-header py-3">
+              <h4 class="my-0 fw-normal"><%= name %></h4>
+            </div>
+            <div class="card-body">
+              <h1 class="card-title pricing-card-title"> <% if (locals.imgurl) { %>
+                <img src="<%= imgurl %>" alt="Description of image">
+            <% } %><small class="text-body-secondary fw-light"></small></h1>
+              <ul class="list-unstyled mt-3 mb-4">
+                <li>Current Temprature <strong><%= currtemp %> F</strong></li>
+                <li>Wind Speed          <strong><%= speed %> km/hr</strong></li>
+                <li>Maximum Temprature  <strong><%= maxtemp %> F</strong></li>
+                <li>Minimum Temprature  <strong><%= mintemp %> F</strong></li>
+                <li>Pressure             <strong><%= pressure %> Pa</strong></li>
+              </ul>
+              </div>
+          </div>
+        </div>
+        </div>
+        </div>
+      </div>
+      <% } %>
+      <% if (!locals.name) { %>
+             <h1>No Data</h1>
+      <% } %>   
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+            <style>
+
+                .news-ticker {
+            width: 50%;
+            height: 200px;
+            overflow: hidden;
+            }
+
+            .news-item {
+            width: 100%;
+            height: 200px;
+            }
+
+            .news-item img {
+            width: 55%;
+            height: 87%;
+            }
+        </style>
+             <% if(locals.code) { %>
+                <% if (code==="in") { %>
+                    <h6>You are watching  Current News From India</h6>
+                <% } %>
+                <% if (code==="gb") { %>
+                    <h6>You are watching Current News From UK</h6>
+                <% } %>
+                <% if (code==="fr") { %>
+                    <h6>You are watching Current News From France</h6>
+                <% } %>
+                <% if (code==="us") { %>
+                    <h6>You are watching Current News From US</h6>
+                <% } %>
+                <% if (code==="gr") { %>
+                    <h6>You are watching Current News From Germany</h6>
+                <% } %>
+            <% } else { %>
+               <h6>You are Watching current news from world</h6>
+            <% } %>
+            
+            <div class="news-ticker">
+                <% if (locals.rest) { %>
+                    <% rest.forEach(element => { %>
+                        <div class="news-item">
+                            <p><strong><%= element.title %></strong></p>
+                            <p>Description:<i><%= element.description %></i></p>
+                            <p>Link to article <%= element.url %></p>
+                            </div>
+                            <div class="news-item">
+                            <% if(element.urlToImage!=null) { %>
+                                <img src="<%=element.urlToImage  %>" alt="Description of image">
+                                <p>Image related to above news.</p>
+                                <% } else { %>
+                                <p>No Image Available to above News.</p>
+                            <% } %>
+                        </div>
+                    <% }) %>
+                <% } %>
+               
+                <!-- <div class="news-item">
+                <img src="https://example.com/path-to-your-image1.jpg" alt="News Item 1">
+                <p>Donald Trump pleaded not guilty on Thursday to charges he orchestrated a plot to try to overturn his 2020 election loss in what U.S. prosecutors call an unprecedented effort by the then-president to undermine the pillars of American democracy</p>
+                </div>
+                <div class="news-item">
+                <img src="https://www.reuters.com/resizer/n3ENU_r9hYjB-ftARrg3kSDsq40=/1200x628/smart/filters:quality(80)/cloudfront-us-east-2.images.arcpublishing.com/reuters/EA2654MRVZJG3C3SA4VRKFKLT4.jpg" alt="News Item 2">
+                <p>News Item 2</p>
+                </div>
+                <div class="news-item">
+                <img src="https://example.com/path-to-your-image3.jpg" alt="News Item 3">
+                
+                </div> -->
+                <!-- Add more news items as needed -->
+            </div>
+                <script>
+                $(function() {
+            var ticker = function() {
+                setTimeout(function() {
+                $('.news-ticker .news-item:first').animate({
+                    marginTop: '-400px' // height of .news-item
+                }, 800, function() {
+                    $(this).detach().appendTo('.news-ticker').removeAttr('style');
+                });
+                ticker();
+                }, 5000); // pause duration
+            };
+            ticker();
+            });
+       </script>
+       <footer>
+      Designed and Developed by ｼ S̷ H҉ Ї ℣ ₳ Ñ S̷ H҉  ｼ.
+      </footer>
+      </body>
+      
+</html>
